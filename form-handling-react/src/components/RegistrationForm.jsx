@@ -30,7 +30,6 @@ const RegistrationForm = () => {
     const formErrors = validateForm();
     if (Object.keys(formErrors).length === 0) {
       console.log('Form submitted:', formData);
-      // Simulate API call
     } else {
       setErrors(formErrors);
     }
@@ -41,11 +40,11 @@ const RegistrationForm = () => {
       <div>
         <label>Username:</label>
         <input
-          type="text"
-          name="username"
-          value={formData.username}  {/* Correct binding */}
-          onChange={handleInputChange}
-        />
+  type="text"
+  name="username"
+  value={formData.username}  // Correct binding
+  onChange={handleInputChange}
+/>
         {errors.username && <span>{errors.username}</span>}
       </div>
 
@@ -54,7 +53,7 @@ const RegistrationForm = () => {
         <input
           type="email"
           name="email"
-          value={formData.email}  {/* Correct binding */}
+          value={formData.email}  // Correct binding
           onChange={handleInputChange}
         />
         {errors.email && <span>{errors.email}</span>}
@@ -65,7 +64,7 @@ const RegistrationForm = () => {
         <input
           type="password"
           name="password"
-          value={formData.password}  {/* Correct binding */}
+          value={formData.password}  // Correct binding
           onChange={handleInputChange}
         />
         {errors.password && <span>{errors.password}</span>}

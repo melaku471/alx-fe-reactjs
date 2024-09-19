@@ -18,7 +18,11 @@ const RecipeDetail = () => {
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-3xl font-bold mb-6">{recipe.title}</h1>
-      <img src={recipe.image} alt={recipe.title} className="w-full h-64 object-cover rounded-md mb-6" />
+      <img
+        src={recipe.image}
+        alt={recipe.title}
+        className="w-full h-64 object-cover rounded-md mb-6 shadow-md" // Added shadow here
+      />
       <p className="text-gray-700 mb-4">{recipe.summary}</p>
 
       {/* Ingredients section */}

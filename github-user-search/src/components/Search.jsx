@@ -1,25 +1,27 @@
+// src/components/Search.js
+
 import React, { useState } from 'react';
-import { fetchUserData } from '../services/githubService'; // Ensure correct import path
+import { fetchUserData } from '../services/githubService';
 
 const Search = () => {
-  const [username, setUsername] = useState(''); // State for input value
-  const [userData, setUserData] = useState(null); // State for user data
-  const [loading, setLoading] = useState(false); // State for loading
-  const [error, setError] = useState(null); // State for error handling
+  const [username, setUsername] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [userData, setUserData] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); // Start loading
-    setError(null); // Reset error
-    setUserData(null); // Reset user data for new search
+    setLoading(true);
+    setError('');
+    setUserData(null);
 
     try {
-      const data = await fetchUserData(username); // Fetch user data
-      setUserData(data); // Set user data when successful
+      const data = await fetchUserData(username);
+      setUserData(data);
     } catch (err) {
-      setError('Looks like we can’t find the user'); // Set error message if user is not found
+      setError('Looks like we can’t find the user');
     } finally {
-      setLoading(false); // Stop loading after API call completes
+      setLoading(false);
     }
   };
 
@@ -28,21 +30,22 @@ const Search = () => {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          placeholder="Enter GitHub username"
+          placeholder="Search GitHub Username"
           value={username}
-          onChange={(e) => setUsername(e.target.value)} // Handle input change
+          onChange={(e) => setUsername(e.target.value)}
+          required
         />
         <button type="submit">Search</button>
       </form>
 
-      {loading && <p>Loading...</p>} {/* Display while loading */}
-      {error && <p>{error}</p>} {/* Display error message when user not found */}
-      {userData && ( // Display user data if available
+      {loading && <p>Loading...</p>}
+      {error && <p>{error}</p>}
+      {userData && (
         <div>
-          <img src={userData.avatar_url} alt={`${userData.login}'s avatar`} />
-          <h2>{userData.login}</h2>
+          <img src={userData.avatar_url} alt={userData.login} width="100" />
+          <h3>{userData.name}</h3>
           <a href={userData.html_url} target="_blank" rel="noopener noreferrer">
-            View Profile
+            View GitHub Profile
           </a>
         </div>
       )}

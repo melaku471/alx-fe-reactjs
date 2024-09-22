@@ -19,7 +19,7 @@ const Search = () => {
       const data = await fetchUserData(username);
       setUserData(data);
     } catch (err) {
-      setError("Looks like we can't find the user");
+      setError("Looks like we can't find the user");  // Set error message here
     } finally {
       setLoading(false);
     }
@@ -39,11 +39,11 @@ const Search = () => {
       </form>
 
       {loading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
+      {error && <p style={{ color: 'red' }}>{error}</p>} {/* Render error message */}
       {userData && (
         <div>
           <img src={userData.avatar_url} alt={userData.login} width="100" />
-          <h3>{userData.name}</h3>
+          <h3>{userData.name || userData.login}</h3>
           <a href={userData.html_url} target="_blank" rel="noopener noreferrer">
             View GitHub Profile
           </a>
